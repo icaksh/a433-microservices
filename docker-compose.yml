@@ -1,0 +1,53 @@
+# schema version docker compose
+version: "3.7"
+
+# deklarasi services yang akan digunakan
+services:
+
+  # buat services item-app
+  item-app:
+
+    # pilih image dari hasil build
+    image: ghcr.io/icaksh/a433-microservices/item-app:v1
+
+    # ekspose port 8080 ke 80
+    ports:
+      - 80:8080
+    
+    # pilih working dir ke /app
+    working_dir: /app
+    
+    # deklarasikan environtment yang diperlukan
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=item-db
+    
+    # lakukan restart jika berhenti
+    restart: always
+
+    #run setelah item-db running
+    depends_on:
+      - item-db
+
+  # buat services item-db
+  item-db:
+
+    # pilih mongo versi 3
+    image: mongo:3
+
+    # ekspose port 27017
+    ports:
+      - 27017:27017
+
+    # mount app-db ke /data/db
+    volumes:
+      - app-db:/data/db
+    
+    # lakukan restart jika terjadi failure
+    restart: always
+
+# deklarasi volumes yang akan digunakan
+volumes:
+
+  # volume app-db
+  app-db:
