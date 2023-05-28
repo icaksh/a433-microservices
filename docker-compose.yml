@@ -4,6 +4,23 @@ version: "3.7"
 # deklarasi services yang akan digunakan
 services:
 
+  # buat services item-db
+  item-db:
+
+    # pilih mongo versi 3
+    image: mongo:3
+
+    # ekspose port 27017
+    ports:
+      - 27017:27017
+
+    # mount app-db ke /data/db
+    volumes:
+      - app-db:/data/db
+    
+    # lakukan restart jika terjadi failure
+    restart: always
+    
   # buat services item-app
   item-app:
 
@@ -28,23 +45,6 @@ services:
     #run setelah item-db running
     depends_on:
       - item-db
-
-  # buat services item-db
-  item-db:
-
-    # pilih mongo versi 3
-    image: mongo:3
-
-    # ekspose port 27017
-    ports:
-      - 27017:27017
-
-    # mount app-db ke /data/db
-    volumes:
-      - app-db:/data/db
-    
-    # lakukan restart jika terjadi failure
-    restart: always
 
 # deklarasi volumes yang akan digunakan
 volumes:
