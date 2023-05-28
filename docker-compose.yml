@@ -10,10 +10,6 @@ services:
     # pilih mongo versi 3
     image: mongo:3
 
-    # ekspose port 27017
-    ports:
-      - 27017:27017
-
     # mount app-db ke /data/db
     volumes:
       - app-db:/data/db
@@ -30,14 +26,6 @@ services:
     # ekspose port 8080 ke 80
     ports:
       - 80:8080
-    
-    # pilih working dir ke /app
-    working_dir: /app
-    
-    # deklarasikan environtment yang diperlukan
-    environment:
-      - NODE_ENV=production
-      - DB_HOST=item-db
     
     # lakukan restart jika berhenti
     restart: always
