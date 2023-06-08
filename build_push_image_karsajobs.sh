@@ -3,7 +3,7 @@
 
 # build docker dari dockerfile
 echo -e "==== BUILD DOCKER IMAGE DARI DOCKER FILE ===="
-docker build -t icaksh/karsajobs:latest .
+docker build -t ghcr.io/icaksh/karsajobs:latest .
 
 # delay 5 detik
 sleep 5
@@ -35,4 +35,4 @@ sleep 5
 echo -e "\n==== PUSH KE GHCR.IO ===="
 echo -e "\nPastikan anda telah melakukan forking repository dan langkah sebelumnya tidak denied"
 read -p "Konfirmasi (Y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
-docker push icaksh/karsajobs:latest
+docker push ghcr.io/icaksh/karsajobs:latest
