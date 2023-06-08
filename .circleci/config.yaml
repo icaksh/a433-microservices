@@ -16,9 +16,9 @@ jobs:
       - run:
           name: Installing Hadolint
           command: docker pull hadolint/hadolint
-      - run:
-          name: Moving to Karsajobs Backend Directory
-          command: cd karsajobs
+      # - run:
+      #     name: Moving to Karsajobs Backend Directory
+      #     command: cd karsajobs
       - run:
           name: Linting BackEnd Dockerfile
           command: docker run --rm --interactive hadolint/hadolint < ./Dockerfile
@@ -29,9 +29,9 @@ jobs:
     # steps dari setiap jobs, tidak dikomen karena sudah ada di name
     steps:
       - checkout
-      - run:
-          name: Moving to Karsajobs Backend Directory
-          command: cd karsajobs
+      # - run:
+      #     name: Moving to Karsajobs Backend Directory
+      #     command: cd karsajobs
       - run:
           name: Testing Go with Go Test
           command: go test -v -short --count=1 $(go list ./...)
@@ -43,9 +43,9 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run:
-          name: Moving to Karsajobs Backend Directory
-          command: cd karsajobs
+      # - run:
+      #     name: Moving to Karsajobs Backend Directory
+      #     command: cd karsajobs
       - run:
           name: Build Docker Image
           command: "docker build -t ghcr.io/icaksh/karsajobs:latest ."
